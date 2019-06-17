@@ -1,0 +1,47 @@
+﻿@model WebMyWorldEC.Models.Response.DataServicesToEC
+
+@{
+    ViewBag.Title = "Details Service in Mall";
+}
+
+@if (Request.IsAuthenticated)
+{
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    <div class="form-group">
+        <div>
+            <input class="btn btn-default" value="Back to List" type="submit" onclick="location.href='@Url.Action("Index", "Services_Entertainment_Centers")';return false;" />
+        </div>
+    </div>
+    <hr />
+    <div>
+        <dl class="dl-horizontal col-md-offset-4">
+
+            <dt>
+                @Html.DisplayName("Mall")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Entertainment_Centers.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Service")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Service.Name)
+            </dd>
+
+        </dl>
+    </div>
+
+    <div class="form-actions text-center">
+        <input class="btn btn-default" value="Edit" type="submit" onclick="location.href = '@Url.Action("Edit", "Services_Entertainment_Centers", new { id = Model.Id })';" />
+    </div>
+    
+}
+else
+{
+    Response.Redirect(Url.Action("Login", "Account"));
+}

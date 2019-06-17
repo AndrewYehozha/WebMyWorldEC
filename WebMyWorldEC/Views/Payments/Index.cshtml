@@ -1,0 +1,56 @@
+﻿@model IEnumerable<WebMyWorldEC.Models.Response.DataPayment>
+
+@{
+    ViewBag.Title = "Payments";
+}
+
+@if (Request.IsAuthenticated)
+{
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("User Email")
+            </th>
+            <th>
+                @Html.DisplayName("Payment Date")
+            </th>
+            <th>
+                @Html.DisplayName("Mall")
+            </th>
+            <th>
+                @Html.DisplayName("Service")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cost)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Entert_CenterName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cost)
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    Response.Redirect(Url.Action("Login", "Account"));
+}

@@ -1,0 +1,73 @@
+﻿@model IEnumerable<WebMyWorldEC.Models.Response.DataEntertainment_Centers>
+
+@{
+    ViewBag.Title = "Malls";
+}
+
+@if (Request.IsAuthenticated)
+{
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    <div class="form-group text-right">
+        <div>
+            <input class="btn btn-default" value="Create new" type="submit" onclick="location.href='@Url.Action("Create", "Entertainment_Centers")';return false;" />
+        </div>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Owner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayName("Parking")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Owner)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsParking)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    Response.Redirect(Url.Action("Login", "Account"));
+}

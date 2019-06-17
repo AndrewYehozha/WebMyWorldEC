@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebMyWorldEC.Models.Response.DataCategoriesServices>
+
+@{
+    ViewBag.Title = "Categories in Services";
+}
+
+@if (Request.IsAuthenticated)
+{
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    <div class="form-group text-right">
+        <div>
+            <input class="btn btn-default" value="Create new" type="submit" onclick="location.href='@Url.Action("Create", "Categories_Services")';return false;" />
+        </div>
+    </div>
+
+    <table class="table" style="width:70%; margin-left:15%;">
+        <tr>
+            <th>
+                @Html.DisplayName("Service")
+            </th>
+            <th>
+                @Html.DisplayName("Category")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Service.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td class="text-center">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    Response.Redirect(Url.Action("Login", "Account"));
+}

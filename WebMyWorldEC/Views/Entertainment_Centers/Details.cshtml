@@ -1,0 +1,77 @@
+﻿@model WebMyWorldEC.Models.Response.DataEntertainment_Centers
+
+@{
+    ViewBag.Title = "Details Mall";
+}
+
+@if (Request.IsAuthenticated)
+{
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    <div class="form-group">
+        <div>
+            <input class="btn btn-default" value="Back to List" type="submit" onclick="location.href='@Url.Action("Index", "Entertainment_Centers")';return false;" />
+        </div>
+    </div>
+    <hr />
+
+    <div>
+        <dl class="dl-horizontal col-md-offset-4">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Owner)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Owner)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Parking")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsParking)
+            </dd>
+
+        </dl>
+    </div>
+    <div class="form-actions text-center">
+        <input class="btn btn-default" value="Edit" type="submit" onclick="location.href = '@Url.Action("Edit", "Entertainment_Centers", new { id = Model.Id })';" />
+    </div>
+}
+else
+{
+    Response.Redirect(Url.Action("Login", "Account"));
+}

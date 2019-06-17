@@ -1,0 +1,54 @@
+﻿@model WebMyWorldEC.Models.Response.DataServicesToEC
+
+@{
+    ViewBag.Title = "Delete Service in Mall";
+}
+
+@if (Request.IsAuthenticated)
+{
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    <div>
+        <h3>Are you sure you want to delete this?</h3>
+        <div class="form-group">
+            <div>
+                <input class="btn btn-default" value="Back to List" type="submit" onclick="location.href='@Url.Action("Index", "Services_Entertainment_Centers")';return false;" />
+            </div>
+        </div>
+    </div>
+    <div>
+        <hr />
+        <dl class="dl-horizontal col-md-offset-4">
+            <dt>
+                @Html.DisplayNameFor(model => model.Entertainment_Centers.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Entertainment_Centers.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Service.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Service.Name)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions text-center">
+                <input type="submit" value="Delete" class="btn btn-default" />
+            </div>
+        }
+    </div>
+    
+}
+else
+{
+    Response.Redirect(Url.Action("Login", "Account"));
+}

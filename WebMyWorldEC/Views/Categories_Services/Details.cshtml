@@ -1,0 +1,41 @@
+﻿@model WebMyWorldEC.Models.Categories_Services
+
+@{
+    ViewBag.Title = "Details Category in Service";
+}
+
+@if (Request.IsAuthenticated)
+{
+    <h2>@ViewBag.Title.</h2>
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Category.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Category.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Service.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Service.Name)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+}
+else
+{
+    Response.Redirect(Url.Action("Login", "Account"));
+}

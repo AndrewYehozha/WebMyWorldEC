@@ -1,0 +1,56 @@
+﻿@model WebMyWorldEC.Models.Response.DataServicesToEC
+
+@{
+    ViewBag.Title = "Create Service in Mall";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    if (Request.IsAuthenticated)
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <div>
+                <input class="btn btn-default" value="Back to List" type="submit" onclick="location.href='@Url.Action("Index", "Services_Entertainment_Centers")';return false;" />
+            </div>
+        </div>
+        <hr />
+        <div class="form-horizontal col-md-offset-3">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Entertainment_CenterId, "Mall", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Entertainment_CenterId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Entertainment_CenterId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ServiceId, "Service", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("ServiceId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ServiceId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="text-center col-md-8">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        Response.Redirect(Url.Action("Login", "Account"));
+    }
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

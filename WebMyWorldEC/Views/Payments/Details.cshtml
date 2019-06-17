@@ -1,0 +1,67 @@
+﻿@model WebMyWorldEC.Models.Response.DataPayment
+
+@{
+    ViewBag.Title = "Details Payment";
+}
+
+@if (Request.IsAuthenticated)
+{
+    <h2 class="text-center">@ViewBag.Title</h2>
+
+    <div class="form-group">
+        <div>
+            <input class="btn btn-default" value="Back to List" type="submit" onclick="location.href='@Url.Action("Index", "Payments")';return false;" />
+        </div>
+    </div>
+    <hr />
+
+    <div>
+        <dl class="dl-horizontal col-md-offset-4">
+
+            <dt>
+                @Html.DisplayName("User Email")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UserEmail)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Payment Date")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PaymentDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Mall")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Entert_CenterName)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Service")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ServiceName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Cost)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cost)
+            </dd>
+
+        </dl>
+    </div>
+}
+else
+{
+    Response.Redirect(Url.Action("Login", "Account"));
+}
